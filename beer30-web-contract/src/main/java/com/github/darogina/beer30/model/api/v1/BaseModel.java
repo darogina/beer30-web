@@ -1,5 +1,6 @@
 package com.github.darogina.beer30.model.api.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.darogina.beer30.model.api.ApiModel;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -7,7 +8,6 @@ public abstract class BaseModel extends ResourceSupport implements ApiModel {
 
     public static final String API_VERSION = "v1";
 
-    private int version = 0;
     //    @JsonSerialize(using = DateTimeSerializer.class)
 //    private DateTime createDate;
 //    @JsonSerialize(using = DateTimeSerializer.class)
@@ -19,22 +19,13 @@ public abstract class BaseModel extends ResourceSupport implements ApiModel {
 
     public BaseModel() {}
 
-    public BaseModel(int version, /*DateTime createDate, DateTime lastUpdate, String createdBy, String changedBy,*/ String uuid) {
-        this.version = version;
+    public BaseModel(/*DateTime createDate, DateTime lastUpdate, String createdBy, String changedBy,*/ String uuid) {
 //        this.createDate = createDate;
 //        this.lastUpdate = lastUpdate;
 //        this.createdBy = createdBy;
 //        this.changedBy = changedBy;
         this.uuid = uuid;
         this.apiVersion = API_VERSION;
-    }
-
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
     }
 
 //    public DateTime getCreateDate() {

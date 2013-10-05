@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Spring-MVC RESTful API</name>
+    <name>Beer30 Web</name>
 
     <groupId>com.github.darogina.beer30</groupId>
     <artifactId>beer30-web</artifactId>
@@ -16,9 +16,11 @@
         <spring.data.jpa.version>1.3.4.RELEASE</spring.data.jpa.version>
         <spring.hateoas.version>0.8.0.RELEASE</spring.hateoas.version>
         <spring.plugin.version>0.8.0.RELEASE</spring.plugin.version>
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
         <hibernate.version>4.2.3.Final</hibernate.version>
         <ehcache.version>2.6.6</ehcache.version>
         <h2database.version>1.3.173</h2database.version>
+        <mysql.version>5.1.26</mysql.version>
         <bonecp.version>0.7.1.RELEASE</bonecp.version>
         <org.jackson.version>2.2.2</org.jackson.version>
         <java.servlet.version>3.0.1</java.servlet.version>
@@ -35,6 +37,7 @@
         <javax.inject.version>1</javax.inject.version>
         <guava.version>14.0.1</guava.version>
         <modelmapper.version>0.6.1</modelmapper.version>
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
 
         <!--Build Properties-->
         <jetty.version>9.0.5.v20130815</jetty.version>
@@ -130,6 +133,27 @@
                 <version>${spring.plugin.version}</version>
             </dependency>
 
+            <!-- Security -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring.security.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring-beans</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>spring-context</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>spring-core</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <!-- Hibernate -->
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -167,15 +191,14 @@
                 <artifactId>h2</artifactId>
                 <version>${h2database.version}</version>
             </dependency>
+
             <!-- MySQL JDBC connector -->
-            <!-- If you want to use MySQL, uncomment this dependency declation. -->
-            <!--
            <dependency>
                <groupId>mysql</groupId>
                <artifactId>mysql-connector-java</artifactId>
                <version>${mysql.connector.version}</version>
            </dependency>
-           -->
+
             <!-- PostgreSQL JDBC 4 -->
             <!-- If you don't want to use PostgreSQL, uncomment this dependency declaration. -->
             <!--
@@ -253,6 +276,13 @@
                 <groupId>org.modelmapper</groupId>
                 <artifactId>modelmapper</artifactId>
                 <version>${modelmapper.version}</version>
+            </dependency>
+
+            <!--Validation-->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
             </dependency>
 
             <!--Test-->
