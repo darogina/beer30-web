@@ -6,12 +6,15 @@ import com.github.darogina.beer30.exception.NotFoundException;
 import com.github.darogina.beer30.service.CrudService;
 import org.jodah.typetools.TypeResolver;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
@@ -120,6 +123,13 @@ public abstract class ServiceBasedRestController<T, ID extends Serializable, S e
     @PostConstruct
     private void init() {
         modelMapper = new ModelMapper();
+        modelMapper.addMappings(new PropertyMap<T, BaseEntity>() {
+            @Override
+            protected void configure() {
+                skip().setId(null);
+            }
+        });
+
         Class<?>[] typeArguments = TypeResolver.resolveRawArguments(ServiceBasedRestController.class, getClass());
         this.resourceClass = (Class<T>) typeArguments[0];
         this.resourceIdClass = (Class<ID>) typeArguments[1];

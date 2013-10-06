@@ -5,27 +5,18 @@ import com.github.darogina.beer30.assembler.api.v1.BookResourceAssembler;
 import com.github.darogina.beer30.controller.ServiceBasedRestController;
 import com.github.darogina.beer30.entity.AuthorEntity;
 import com.github.darogina.beer30.entity.BaseEntity;
-import com.github.darogina.beer30.entity.BookEntity;
 import com.github.darogina.beer30.exception.NotFoundException;
 import com.github.darogina.beer30.model.api.v1.Author;
 import com.github.darogina.beer30.model.api.v1.Book;
 import com.github.darogina.beer30.service.AuthorService;
-import com.github.darogina.beer30.service.BookService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @ExposesResourceFor(Author.class)

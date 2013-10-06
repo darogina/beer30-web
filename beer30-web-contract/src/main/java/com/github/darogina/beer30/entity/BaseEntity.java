@@ -1,6 +1,5 @@
 package com.github.darogina.beer30.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -21,7 +20,7 @@ public abstract class BaseEntity implements Serializable {
 
     @Version
     @Column(name = "OPTLOCK")
-    private long optlock = 0;
+    private long version = 0;
 
     @Column(name = "UUID", nullable = false, unique = true)
     private String uuid;
@@ -32,14 +31,6 @@ public abstract class BaseEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getOptlock() {
-        return optlock;
-    }
-
-    public void setOptlock(long optlock) {
-        this.optlock = optlock;
     }
 
     public String getUuid() {
